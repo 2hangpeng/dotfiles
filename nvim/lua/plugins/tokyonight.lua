@@ -5,6 +5,8 @@ if not status then
   return
 end
 
-plugin.setup({})
+plugin.setup({
+  transparent= true
+})
 
 vim.cmd([[colorscheme tokyonight]])
