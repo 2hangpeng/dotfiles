@@ -11,6 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local lsp = require("plugins/lsp/init")
+
 local plugins = {
 	-- the colorscheme should be available when starting Neovim
 	{
@@ -32,8 +34,8 @@ local plugins = {
 	},
 	{
 		'nvim-tree/nvim-tree.lua',
-		-- cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-		event = "VeryLazy",
+		cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+		-- event = "VeryLazy",
 		config = function()
 			require("plugins/nvim-tree")
 		end,
@@ -42,8 +44,8 @@ local plugins = {
 	{
 		'nvim-telescope/telescope.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' },
-		-- cmd = "Telescope",
-		event = "VeryLazy",
+		cmd = "Telescope",
+		-- event = "VeryLazy",
 		config = function()
 			require("plugins/telescope")
 		end
@@ -75,65 +77,12 @@ local plugins = {
 	},
 	{
 		"windwp/nvim-autopairs",
-		-- event = "InsertEnter",
-		event = "VeryLazy",
+		event = "InsertEnter",
+		-- event = "VeryLazy",
 		config = function()
 			require("plugins/nvim-autopairs")
 		end
 	},
-	{
-		"williamboman/mason.nvim",
-		-- cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUninstall", "MasonUninstallAll", "MasonLog", "SymbolsOutline" },
-		event = "VeryLazy",
-		dependencies = {
-			"williamboman/mason-lspconfig.nvim",
-			"neovim/nvim-lspconfig",
-		},
-		config = function()
-			require("plugins/mason")
-		end
-	},
-	{
-		'simrat39/symbols-outline.nvim',
-		dependencies = {
-			"williamboman/mason.nvim"
-		},
-		event = "VeryLazy",
-		config = function()
-			require("plugins/symbols-outline")
-		end
-	},
-	{
-		'hrsh7th/nvim-cmp',
-		-- event = "InsertEnter",
-		event = "VeryLazy",
-		dependencies = {
-			'neovim/nvim-lspconfig',
-			'hrsh7th/cmp-nvim-lsp',
-			'hrsh7th/cmp-buffer',
-			'hrsh7th/cmp-path',
-			'hrsh7th/cmp-cmdline',
-			-- for vsnip users.
-			'hrsh7th/cmp-vsnip',
-			'hrsh7th/vim-vsnip',
-			"rafamadriz/friendly-snippets"
-		},
-		config = function()
-			require("plugins/cmp")
-		end
-	},
-	{
-		"ray-x/go.nvim",
-		event = "VeryLazy",
-		-- ft = "go",
-		requires = {
-			"ray-x/guihua.lua",
-			"neovim/nvim-lspconfig",
-			"nvim-treesitter/nvim-treesitter",
-		},
-		config = function()
-			require("plugins/go")
-		end
-	}
+	lsp
 }
 require("lazy").setup(plugins)
