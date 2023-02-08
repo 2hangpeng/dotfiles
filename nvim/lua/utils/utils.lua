@@ -63,7 +63,7 @@ function M.print_dump(data, showMetatable, lastCount)
 end
 
 function M.keymap(mode, lhs, rhs, opts)
-  if key == '' then return end
+  if lhs == '' then return end
   if (opts == nil or next(opts) == nil) then opts = { noremap = true, silent = true, desc = "desc" } end
   vim.keymap.set(mode, lhs, rhs, opts)
 end
