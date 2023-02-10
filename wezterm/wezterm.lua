@@ -1,6 +1,6 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
-local username = os.getenv("USER")
+local userName = os.getenv("USER")
 local hostname = wezterm.hostname()
 local keys = {
 	{ key = 'Tab',        mods = 'CTRL',           action = act.ActivateTabRelative(1) },
@@ -221,20 +221,42 @@ local key_tables = {
 		{ key = 'DownArrow', mods = 'NONE', action = act.CopyMode 'NextMatch' },
 	},
 }
--- wezterm.on(
--- 	'format-tab-title',
--- 	function(tab, tabs, panes, config, hover, max_width)
-		
--- 		return username .. "@" .. hostname
--- 		-- if tab.is_active then
--- 		-- 	return {
--- 		-- 		{ Background = { Color = 'blue' } },
--- 		-- 		{ Text = ' ' .. tab.active_pane.title .. ' ' },
--- 		-- 	}
--- 		-- end
--- 		-- return hostname
--- 	end
--- )
+local mouse_bindings = {
+	-- change the default click behavior so that it only selects text and doesn't open hyperlinks
+	{
+		event = { Up = { streak = 1, button = 'Left' } },
+		mods = 'NONE',
+		action = act.CompleteSelection 'PrimarySelection',
+	},
+	-- and make CTRL-Click open hyperlinks
+	{
+		event = { Up = { streak = 1, button = 'Left' } },
+		mods = 'CTRL',
+		action = act.OpenLinkAtMouseCursor,
+	},
+}
+local sep = package.config:sub(1, 1)
+
+local function GetTabTitle(tab)
+	local path = tab.active_pane.current_working_dir
+	local folder_name = string.match(path, ".*" .. sep .. "(.*)")
+	if folder_name == userName then
+		folder_name = "~"
+	else
+		folder_name = "../" .. folder_name
+	end
+	return tab.tab_index + 1 .. ": " .. folder_name
+end
+
+wezterm.on(
+	'format-tab-title',
+	function(tab, tabs, panes, config, hover, max_width)
+		local title = GetTabTitle(tab)
+		return {
+			{ Text = title },
+		}
+	end
+)
 
 wezterm.on(
 	'update-right-status',
@@ -249,25 +271,11 @@ wezterm.on(
 		local date = wezterm.strftime '%a %b %-d %H:%M '
 
 		window:set_right_status(wezterm.format {
-			{ Text = status .. '   ' .. date },
+			{ Text = status .. '  ' .. date },
 		})
 	end
 )
 
-local mouse_bindings = {
-	-- Change the default click behavior so that it only selects text and doesn't open hyperlinks
-	{
-		event = { Up = { streak = 1, button = 'Left' } },
-		mods = 'NONE',
-		action = act.CompleteSelection 'PrimarySelection',
-	},
-	-- and make CTRL-Click open hyperlinks
-	{
-		event = { Up = { streak = 1, button = 'Left' } },
-		mods = 'CTRL',
-		action = act.OpenLinkAtMouseCursor,
-	},
-}
 return {
 	color_scheme = "tokyonight",
 	-- font
