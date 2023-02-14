@@ -72,7 +72,7 @@ local plugins = {
 		"lukas-reineke/indent-blankline.nvim",
 		event = "VeryLazy",
 		config = function()
-			require("plugins/indent-blankline")
+			require("plugins.indent-blankline")
 		end
 	},
 	{
@@ -80,7 +80,7 @@ local plugins = {
 		event = "InsertEnter",
 		-- event = "VeryLazy",
 		config = function()
-			require("plugins/nvim-autopairs")
+			require("plugins.nvim-autopairs")
 		end
 	},
 	lsp

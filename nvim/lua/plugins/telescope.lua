@@ -1,26 +1,15 @@
 -- https://github.com/nvim-telescope/telescope.nvim
-local status, plugin = pcall(require, "telescope")
-if not status then
-    vim.notify("telescope not installed")
-    return
-end
-
 local actions = require("telescope.actions")
 
-plugin.setup {
+require("telescope").setup {
     defaults = {
-        -- default configuration for telescope goes here:
-        -- config_key = value,
         mappings = {
             i = {
-                -- map actions.which_key to <C-h> (default: <C-/>)
-                -- actions.which_key shows the mappings for your picker,
-                -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-                -- ["<Esc>"] = actions.close,
-                ["<Tab>"] = actions.move_selection_previous,
-                ["<S-Tab>"] = actions.move_selection_next,
-                ["<C-u>"] = false
-            }
+                ["<esc>"] = actions.close,
+                ["<C-u>"] = false,
+                ["<Tab>"] = actions.move_selection_next,
+                ["<S-Tab>"] = actions.move_selection_previous,
+            },
         },
     },
     pickers = {

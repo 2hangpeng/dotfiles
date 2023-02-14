@@ -16,8 +16,6 @@ vim.o.expandtab = true
 vim.o.ignorecase = true
 -- don't ignore case when searching if pattern has upper case
 vim.o.smartcase = true
--- customize completions
-vim.o.completeopt   = 'menuone,noinsert,noselect'
 -- don't store backup while overwriting the file
 vim.o.backup = false
 -- don't store backup while overwriting the file
