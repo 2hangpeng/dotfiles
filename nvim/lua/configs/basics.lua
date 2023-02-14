@@ -26,4 +26,6 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 -- enable gui colors
 -- vim.o.termguicolors = true
+-- to ALWAYS use the clipboard for ALL operations
+vim.o.clipboard = 'unnamed,unnamedplus'
 

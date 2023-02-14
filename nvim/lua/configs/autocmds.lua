@@ -38,13 +38,6 @@ autocmd("BufReadPost", {
   end,
 })
 
--- Auto format on save using the attached (optionally filtered) language servere clients
--- https://neovim.io/doc/user/lsp.html#vim.lsp.buf.format()
--- autocmd('BufWritePre', {
---   pattern = '',
---   command = ':silent lua vim.lsp.buf.format()'
--- })
-
 -- close some filetypes with <q>
 autocmd("FileType", {
   group = augroup("close_with_q"),
