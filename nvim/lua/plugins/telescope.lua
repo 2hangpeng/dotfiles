@@ -5,11 +5,19 @@ require("telescope").setup {
     defaults = {
         mappings = {
             i = {
-                ["<esc>"] = actions.close,
                 ["<C-u>"] = false,
-                ["<Tab>"] = actions.move_selection_next,
-                ["<S-Tab>"] = actions.move_selection_previous,
+                ["<Tab>"] = actions.move_selection_previous,
+                ["<S-Tab>"] = actions.move_selection_next,
+                ["<C-j>"] = actions.move_selection_next,
+                ["<C-k>"] = actions.move_selection_previous,
             },
+            n = {
+                ["<esc>"] = actions.close,
+                ["<Tab>"] = actions.move_selection_previous,
+                ["<S-Tab>"] = actions.move_selection_next,
+                ["<C-j>"] = actions.move_selection_next,
+                ["<C-k>"] = actions.move_selection_previous,
+            }
         },
     },
     pickers = {

@@ -83,6 +83,12 @@ local plugins = {
 			require("plugins.nvim-autopairs")
 		end
 	},
+	-- {
+	-- 	"dnlhc/glance.nvim",
+	-- 	config = function()
+	-- 		require("plugins.glance")
+	-- 	end,
+	-- },
 	lsp
 }
 require("lazy").setup(plugins)
