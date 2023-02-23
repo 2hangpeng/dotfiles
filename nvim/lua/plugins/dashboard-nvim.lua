@@ -5,7 +5,7 @@ require('dashboard').setup {
     week_header = {
       enable = true,
     },
-    disable_move = true,
+    -- disable_move = true,
     shortcut = {
       {
 				icon = "  ",
