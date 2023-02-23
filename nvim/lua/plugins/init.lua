@@ -85,9 +85,9 @@ local plugins = {
 	},
 	-- {
 	-- 	"dnlhc/glance.nvim",
-	-- 	config = function()
-	-- 		require("plugins.glance")
-	-- 	end,
+		-- config = function()
+		-- 	require("plugins.glance")
+		-- end,
 	-- },
 	lsp
 }

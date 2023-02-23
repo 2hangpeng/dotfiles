@@ -37,3 +37,14 @@ require("telescope").setup {
         -- please take a look at the readme of the extension you want to configure
     }
 }
+
+local status, utils = pcall(require, "utils/utils")
+if not status then
+    vim.notify("utils not installed")
+    return
+end
+local builtin = require('telescope.builtin')
+utils.keymap('n', 'ff', builtin.find_files, {})
+utils.keymap('n', 'fw', builtin.live_grep, {})
+utils.keymap('n', 'fb', builtin.buffers, {})
+utils.keymap('n', 'fh', builtin.help_tags, {})

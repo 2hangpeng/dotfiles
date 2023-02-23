@@ -2,7 +2,10 @@
 vim.o.number = true
 -- highlight current line
 vim.o.cursorline = true
--- 右侧参考线，超过表示代码太长了，考虑换行
+-- jkhl padding
+vim.o.scrolloff = 8
+vim.o.sidescrolloff = 8
+-- line of reference on right
 vim.o.colorcolumn = "150"
 -- number of visual spaces per TAB
 vim.o.tabstop = 4

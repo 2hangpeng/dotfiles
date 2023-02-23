@@ -1,21 +1,92 @@
 -- https://github.com/kyazdani42/nvim-tree.lua
-local status, plugin = pcall(require, "nvim-tree")
-if not status then
-  vim.notify("nvim-tree not installed")
-  return
-end
 
 -- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-plugin.setup {
+require("nvim-tree").setup {
+  view = {
+    width = 30,
+    mappings = {
+      list = { -- BEGIN_DEFAULT_MAPPINGS
+        -- add a file; leaving a trailing `/` will add a directory
+        { key = "a",                              action = "create" },
+        -- delete a file (will prompt for confirmation)
+        { key = "d",                              action = "remove" },
+        -- rename a file
+        { key = "r",                              action = "rename" },
+        -- add/remove file/directory to cut clipboard
+        { key = "x",                              action = "cut" },
+        -- add/remove file/directory to copy clipboard
+        { key = "c",                              action = "copy" },
+        -- paste from clipboard; cut clipboard has precedence over copy; will prompt for confirmation
+        { key = "p",                              action = "paste" },
+        -- copy name to system clipboard
+        { key = "y",                              action = "copy_name" },
+        -- copy relative path to system clipboard
+        { key = "Y",                              action = "copy_path" },
+        -- collapse under the cursor
+        { key = "tc",                             action = "collapse_all" },
+        -- expand under the cursor
+        { key = "te",                             action = "expand_all" },
+        -- enter next dir
+        { key = "<C-]>",                          action = "cd" },
+        -- enter previous dir
+        { key = "<C-[>",                          action = "dir_up" },
+
+        { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
+        { key = "<C-e>",                          action = "edit_in_place" },
+        { key = "O",                              action = "edit_no_picker" },
+        { key = { "<2-RightMouse>" },             action = "cd" },
+        { key = "<C-v>",                          action = "vsplit" },
+        { key = "<C-x>",                          action = "split" },
+        { key = "<C-t>",                          action = "tabnew" },
+        { key = "<",                              action = "prev_sibling" },
+        { key = ">",                              action = "next_sibling" },
+        { key = "P",                              action = "parent_node" },
+        { key = "<BS>",                           action = "close_node" },
+        { key = "<Tab>",                          action = "preview" },
+        { key = "K",                              action = "first_sibling" },
+        { key = "J",                              action = "last_sibling" },
+        { key = "C",                              action = "toggle_git_clean" },
+        { key = "I",                              action = "toggle_git_ignored" },
+        { key = "H",                              action = "toggle_dotfiles" },
+        { key = "B",                              action = "toggle_no_buffer" },
+        { key = "U",                              action = "toggle_custom" },
+        { key = "R",                              action = "refresh" },
+        { key = "D",                              action = "trash" },
+        { key = "<C-r>",                          action = "full_rename" },
+        { key = "e",                              action = "rename_basename" },
+        { key = "gy",                             action = "copy_absolute_path" },
+        { key = "[e",                             action = "prev_diag_item" },
+        { key = "[c",                             action = "prev_git_item" },
+        { key = "]e",                             action = "next_diag_item" },
+        { key = "]c",                             action = "next_git_item" },
+        { key = "s",                              action = "system_open" },
+        { key = "f",                              action = "live_filter" },
+        { key = "F",                              action = "clear_live_filter" },
+        { key = "q",                              action = "close" },
+        { key = "W",                              action = "collapse_all" },
+        { key = "E",                              action = "expand_all" },
+        { key = "S",                              action = "search_node" },
+        { key = ".",                              action = "run_file_command" },
+        { key = "<C-k>",                          action = "toggle_file_info" },
+        { key = "g?",                             action = "toggle_help" },
+        { key = "m",                              action = "toggle_mark" },
+        { key = "bmv",                            action = "bulk_move" },
+      } -- END_DEFAULT_MAPPINGS
+    },
+  },
   renderer = {
     icons = {
       show = {
         file = false
       }
     },
+  },
+  live_filter = {
+    prefix = "[FILTER]: ",
+    always_show_folders = false,
   },
 }
 

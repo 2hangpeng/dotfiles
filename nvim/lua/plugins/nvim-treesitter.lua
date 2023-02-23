@@ -1,6 +1,7 @@
 -- https://github.com/nvim-treesitter/nvim-treesitter
 require'nvim-treesitter.configs'.setup({
 	-- a list of parser names, or "all" (the four listed parsers should always be installed)
+	-- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
 	ensure_installed = { "bash", "css", "go", "dockerfile", "json", "lua", "markdown", "php", "solidity", "sql", "vim",
 		"vue", "yaml" },
 	highlight = {
