@@ -281,6 +281,13 @@ return {
 	-- font
 	font = wezterm.font 'JetBrains Mono',
 	harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
+	-- padding
+	window_padding = {
+		left = 8,
+		right = 8,
+		top = 8,
+		bottom = 8,
+	},
 	-- opacity
 	window_background_opacity = 0.85,
 	-- scrollback

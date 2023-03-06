@@ -17,12 +17,18 @@ utils.keymap("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
 utils.keymap("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
 utils.keymap("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 
-
 -- resize window using <ctrl> arrow keys
 utils.keymap("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
 utils.keymap("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
 utils.keymap("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 utils.keymap("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+
+-- tab-related operations
+-- utils.keymap("n", "tn", "<cmd>tabnew<cr>", { desc = "Increase window height" })
+utils.keymap("n", "tc", "<cmd>tabclose<cr>", { desc = "Decrease window height" })
+utils.keymap("n", "tn", "<cmd>tabnext<cr>", { desc = "Decrease window width" })
+utils.keymap("n", "tp", "<cmd>tabprev<cr>", { desc = "Increase window width" })
+utils.keymap("n", "to", "<cmd>tabonly<cr>", { desc = "Increase window width" })
 
 -- move Lines
 utils.keymap("n", "<A-j>", ":m .+1<cr>==", { desc = "Move down" })
