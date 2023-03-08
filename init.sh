@@ -1,29 +1,20 @@
+#!/bin/bash
 
-# Check if Fish is installed
-if [ -x "$(command -v zsh)" ]; then
-  echo "Fish is already installed"
+set -e
+
+# Prevents being loaded twice
+if [[ -n $_INIT_SH_LOADED ]]; then
+    exit 0
 else
-  # Install Homebrew on macOS if not already installed
-  if [ "$(uname)" == "Darwin" ]; then
-    if [ ! -x "$(command -v brew)" ]; then
-      echo "Installing Homebrew on macOS"
-      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-    fi
-
-    echo "Installing Fish on macOS"
-    brew install fish
-  fi
-
-  # Install Fish on Linux
-  if [ "$(uname)" == "Linux" ]; then
-    echo "Installing Fish on Linux"
-    sudo apt-get update
-    sudo apt-get install fish
-  fi
+    export _INIT_SH_LOADED=1
 fi
 
-# Set Fish as the default shell
-if [ "$SHELL" != "$(which fish)" ]; then
-  echo "Setting Fish as the default shell"
-  chsh -s "$(which fish)"
-fi
+# Exit if it is not interactive. For example, bash test.sh is not interactive when calling bash to run the script
+# The only mode that becomes interactive is the bash mode that waits for the user to enter a command
+case "$-" in
+*i*) ;;
+*) exit 0 ;;
+esac
+
+# Clear PATH and delete duplicate paths
+export PATH=$(echo $PATH | awk -v RS=':' '!a[$0]++ {if (NR>1) printf(":"); printf("%s", $0)}')

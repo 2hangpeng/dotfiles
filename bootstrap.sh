@@ -20,7 +20,7 @@ Darwin*)
   # Update Homebrew and install necessary packages
   echo "Updating Homebrew and installing necessary packages..."
   brew update
-  brew install git fish neovim
+  brew install git fish neovim neofetch
   ;;
 
 Linux*)
@@ -34,7 +34,7 @@ Linux*)
 
   # Install necessary packages
   echo "Installing necessary packages..."
-  sudo apt-get install -y git fish
+  sudo apt-get install -y git fish neofetch
   ;;
 
 *)
@@ -52,5 +52,12 @@ fi
 
 # Clone dotfiles repository
 echo "Cloning dotfiles repository..."
-mkdir -p "$HOME/dotfiles"
-git clone --depth 1 https://github.com/gh-zhangpeng/dotfiles.git "$HOME/dotfiles"
+dotfilesPath="$HOME/dotfiles"
+if [ -d $dotfilesPath ]; then
+  mv $dotfilesPath "${dotfilesPath}_$(date +%Y-%m-%d_%H:%M:%S)"
+fi
+mkdir -p $dotfilesPath
+git clone --depth 1 https://github.com/gh-zhangpeng/dotfiles.git $dotfilesPath
+git="$dotfilesPath/git"
+chmod +x $git/init.sh
+/bin/bash $git/init.sh
