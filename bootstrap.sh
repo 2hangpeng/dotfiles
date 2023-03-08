@@ -1,29 +1,28 @@
+#!/bin/bash
 
-# Check if Fish is installed
-if [ -x "$(command -v zsh)" ]; then
-  echo "Fish is already installed"
-else
-  # Install Homebrew on macOS if not already installed
-  if [ "$(uname)" == "Darwin" ]; then
-    if [ ! -x "$(command -v brew)" ]; then
-      echo "Installing Homebrew on macOS"
-      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+# Determine the operating system
+if [ "$(uname)" == "Darwin" ]; then
+    # macOS
+
+    # Install Homebrew if not installed
+    if ! command -v brew >/dev/null 2>&1; then
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 
-    echo "Installing Fish on macOS"
-    brew install fish
-  fi
+    # Update Homebrew and install necessary packages
+    brew update
+    brew install git
 
-  # Install Fish on Linux
-  if [ "$(uname)" == "Linux" ]; then
-    echo "Installing Fish on Linux"
+elif [ "$(uname)" == "Linux" ]; then
+    # Ubuntu
+
+    # Update package manager
     sudo apt-get update
-    sudo apt-get install fish
-  fi
+
+    # Install necessary packages
+    sudo apt-get install -y git
 fi
 
-# Set Fish as the default shell
-if [ "$SHELL" != "$(which fish)" ]; then
-  echo "Setting Fish as the default shell"
-  chsh -s "$(which fish)"
-fi
+# Clone dotfiles repository
+git clone https://github.com/gh-zhangpeng/dotfiles.git $HOME/ttt/dotfiles
+
