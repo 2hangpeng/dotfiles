@@ -19,7 +19,7 @@ Darwin*)
     # Update Homebrew and install necessary packages
     echo "Updating Homebrew and installing necessary packages..."
     brew update
-    brew install git fish neovim neofetch
+    brew install git fish node neovim neofetch
     ;;
 
 Linux*)
