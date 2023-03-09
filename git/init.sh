@@ -16,7 +16,7 @@ git config --global user.name 2hangpeng
 git config --global user.email zhangpeng.0304@aliyun.com
 
 # Set alias
-git config --global alias.graph "log --graph --all --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset - %s %Cgreen%ad%Creset %C(bold blue)%an%Creset %C(yellow)%d%Creset'"
+git config --global alias.graph "log --graph --all --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset - %s %Cgreen(%ad)%Creset %C(bold blue)%an%Creset %C(yellow)%d%Creset'"
 git config --global alias.aliases "config --get-regexp alias"
 git config --global alias.last "log -1 HEAD"
 git config --global alias.amend "commit --amend --reuse-message=HEAD"
