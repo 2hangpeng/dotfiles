@@ -1,11 +1,15 @@
 #!/bin/bash
 
+# Exit immediately if any command exits with a non-zero status
 set -e
 
 # Set editor
 git config --global core.editor "vim"
 # Set ignore file
-git config --global core.excludesfile $HOME/dotfiles/git/gitignore_global
+# Get the directory of the script
+current_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+source $DOTFILES_PATH/scripts/copy.sh "$current_dir/gitignore_global" "$HOME/.gitignore_global"
+git config --global core.excludesfile $HOME/.gitignore_global
 # Set git init default branch name
 git config --global init.defaultBranch main
 # Set auto setup remote branch

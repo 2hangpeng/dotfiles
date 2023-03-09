@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Exit immediately if any command exits with a non-zero status
 set -e
 
 # Prevents being loaded twice
