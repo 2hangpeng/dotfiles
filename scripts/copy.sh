@@ -29,7 +29,7 @@ if [[ -d $source_path ]]; then
     # Check if destination path exists
     if [[ -e $destination_path ]]; then
         # Generate backup path with timestamp
-        backup_path="${destination_path}_backup_$(date +"%Y%m%d%H%M%S")"
+        backup_path="${destination_path}_backup_$(date +%Y-%m-%d_%H:%M:%S)"
         # Move destination to backup path
         mv "$destination_path" "$backup_path"
     fi
@@ -51,7 +51,7 @@ else
         # Check if old file exists
         if [[ -e $old ]]; then
             # Generate backup path with timestamp
-            backup_path="${old}_backup_$(date +"%Y%m%d%H%M%S")"
+            backup_path="${old}_backup_$(date +%Y-%m-%d_%H:%M:%S)"
             # Move old file to backup path
             mv "$old" "$backup_path"
         fi
@@ -64,7 +64,7 @@ else
         # Check if old file exists
         if [[ -e $old ]]; then
             # Generate backup path with timestamp
-            backup_path="${old}_backup_$(date +"%Y%m%d%H%M%S")"
+            backup_path="${old}_backup_$(date +%Y-%m-%d_%H:%M:%S)"
             # Move old file to backup path
             mv "$old" "$backup_path"
         fi
@@ -81,3 +81,4 @@ else
         cp "$source_path" "$destination_path"
     fi
 fi
+
